@@ -8,9 +8,9 @@ body {
     }
     
     .main {
-        background-color: greenyellow;
+        background-color: darkslateblue;
         padding: 10%;
-        color: orangered;
+        color: darkorange;
     }
     
     .start {
@@ -21,4 +21,8 @@ body {
         color: purple;
         border: 2px;
         border-style: solid;
+    }
+
+    .title {
+        text-align: center;
     }
