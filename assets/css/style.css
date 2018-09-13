@@ -1,0 +1,24 @@
+body {
+    background-image: url("https://images.pexels.com/photos/1293269/pexels-photo-1293269.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    
+    }
+    
+    .navbar {
+        background-color: aqua;
+    }
+    
+    .main {
+        background-color: greenyellow;
+        padding: 10%;
+        color: orangered;
+    }
+    
+    .start {
+        background-color: orangered;
+    }
+    
+    .answers p:hover {
+        color: purple;
+        border: 2px;
+        border-style: solid;
+    }
