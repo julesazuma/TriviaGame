@@ -3,7 +3,7 @@ $(document).ready(function() {
     //create an object that holds all questions and answer information
     var questions = {
         zero: {
-            question: ["What does Atari mean?"],
+            question: ["Most of us have played Atari games. What does Atari mean?"],
             answers: ["Success", "Fun", "Attach", "Joy"],
             correct: "Success"
         },
@@ -63,9 +63,17 @@ $(document).ready(function() {
     };
     
     //create divs to contain information
-
+    var rightDiv = $("<div class='rightAns'></div>");
+    var timerDiv = $("<div class='countdown'><h3></h3></div>");
+    var questionDiv = $("<div class='question'><h3></h3></div>");
+    var answerDiv = $("<div class='answers'></div>");
+    
     //create object keys to return the questions in order
-
+    var keys = Object.keys(questions);
+    var key = keys[n];
+    var time = 30;
+    var n = 0;
+    
     //create a function with reset and game setup
 
     //create a function to begin showing questions and messages that follow
@@ -77,5 +85,10 @@ $(document).ready(function() {
     //create a function that shows the time remaining at the top of each question
 
     //create a function for a timer for the message after choosing an answer
- 
+
     //display the final score after 'checkIfLast' returns 
+
+    // Create a .on("click") event to make a button to start the game.
+
+    
+    });
