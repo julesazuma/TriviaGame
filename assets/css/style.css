@@ -14,11 +14,11 @@ body {
     }
     
     .start {
-        background-color: orangered;
+        background-color: crimson;
     }
     
     .answers p:hover {
-        color: purple;
+        color: chartreuse;
         border: 2px;
         border-style: solid;
     }

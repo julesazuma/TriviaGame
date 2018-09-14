@@ -61,6 +61,10 @@ $(document).ready(function() {
             correct: "24 million"
         },
     };
+    console.log(questions);
+
+    // Create a .on("click") event to make CLICK HERE TO START a button to start the game
+    $(document).on("click", ".start", setup);
     
     //create divs to contain information
     var rightDiv = $("<div class='rightAns'></div>");
@@ -70,25 +74,94 @@ $(document).ready(function() {
     
     //create object keys to return the questions in order
     var keys = Object.keys(questions);
+    console.log(keys);
     var key = keys[n];
-    var time = 30;
+    var time = 60;
+    console.log(time);
     var n = 0;
+    console.log(n);
     
     //create a function with reset and game setup
-
+    function setup() {
+        $(".start").css("display", "none");
+    
+        var correct = 0;
+        var incorrect = 0;
+        var timeout = 0;
+        n = 0;
+        key = keys[n];
+    
+        var reset = function() {
+            time = 60;
+            $(".rightAns").empty();
+            $(".rightAns").remove();
+            $(".main").append(timerDiv);
+            $(".countdown h3").html("TIME REMAINING: " + time);
+            $(".main").append(questionDiv);
+            $(".main").append(answerDiv);
+            console.log("reset")
+        }
+    
+    reset();
+    
     //create a function to begin showing questions and messages that follow
-
+    function showQA() {
+        $(".question h3").html(questions[key].question);
+            
+        for (var i = 0; i < questions[key].answers.length; i++) {
+               $(".answers").append("<p class='answer'>" + questions[key].answers[i] + "<p>");
+        }
+                
+        $(".answers p").on("click", function() {
+            var selected = $(this).text();
+            console.log(selected);
+    
      //create a if then statement: if the question is right show you're right, if wrong show oops! the correct answer was"..."
-
+                if (selected === questions[key].correct) {
+                    clearInterval(counter);
+                    $(timerDiv).remove();
+                    $(questionDiv).remove();
+                    $(".answers p").remove();
+                    $(answerDiv).remove();
+                       $(".main").append(rightDiv);
+                    $(".rightAns").text("YOU'RE RIGHT!");
+                    correct++;
+                } else {
+                    clearInterval(counter);
+                    $(timerDiv).remove();
+                    $(questionDiv).remove();
+                    $(".answers p").remove();
+                    $(answerDiv).remove();
+                    $(".main").append(rightDiv);
+                    $(".rightAns").text("OOPS! THE CORRECT ANSWER WAS: " + questions[key].correct);
+                    incorrect++;
+                }
+                n++;
+                key = keys[n];
+    
     //check to see if it is the last question: if it is show the score
-
+                    if (checkIfLast()) {
+                        displayFinalScore();
+    
+                    } else {
+                        setTimeout(countReset, 3000);
+                        console.log(countReset);
+                        setTimeout(reset, 3000);
+                        setTimeout(showQA, 3000);
+                    }
+        });
+    }
+    
+    showQA();
+    
+    var counter = setInterval(count, 500);
+    
     //create a function that shows the time remaining at the top of each question
 
     //create a function for a timer for the message after choosing an answer
 
     //display the final score after 'checkIfLast' returns 
 
-    // Create a .on("click") event to make a button to start the game.
-
+    };
     
     });
