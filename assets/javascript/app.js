@@ -76,7 +76,7 @@ $(document).ready(function() {
     var keys = Object.keys(questions);
     console.log(keys);
     var key = keys[n];
-    var time = 60;
+    var time = 30;
     console.log(time);
     var n = 0;
     console.log(n);
@@ -92,7 +92,7 @@ $(document).ready(function() {
         key = keys[n];
     
         var reset = function() {
-            time = 60;
+            time = 30;
             $(".rightAns").empty();
             $(".rightAns").remove();
             $(".main").append(timerDiv);
@@ -157,11 +157,54 @@ $(document).ready(function() {
     var counter = setInterval(count, 500);
     
     //create a function that shows the time remaining at the top of each question
-
+    function count() {
+        time--
+        $(".countdown h3").html("TIME REMAINING: " + time);
+         
+        if (time < 1) {
+        clearInterval(counter);
+        $(timerDiv).remove();
+        $(questionDiv).remove();
+        $(".answers p").remove();
+        $(answerDiv).remove();
+        $(".main").append(rightDiv);
+        $(".rightAns").html("OUT OF TIME! THE CORRECT ANSWER WAS: " + questions[key].correct);
+        timeout++;
+        n++;
+        key = keys[n];
+        
+            if (checkIfLast()) {
+            displayFinalScore();
+            } else {
+            setTimeout(countReset, 3000);
+            setTimeout(reset, 3000);
+            setTimeout(showQA, 3000);
+            }
+        }
+    }
+    
+    function checkIfLast() {
+        if (key === undefined) {
+        return true;
+        }
+        return false;
+        }
+    
     //create a function for a timer for the message after choosing an answer
-
+     function countReset() {
+        counter = setInterval(count, 500);
+    }
+    
     //display the final score after 'checkIfLast' returns 
-
+    function displayFinalScore() {
+        $(".rightAns").remove();
+        $(".start").css("margin-top", "30px");
+        $(".start").css("display", "inline");
+        $(".main").prepend("<h2>UNANSWERED: " + timeout + "</h2>");
+        console.log(timeout)
+        $(".main").prepend("<h2>INCORRECT: " + incorrect + "</h2>");
+        $(".main").prepend("<h2>CORRECT: " + correct + "</h2>");
+        }
     };
     
     });
